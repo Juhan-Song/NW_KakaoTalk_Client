@@ -116,6 +116,7 @@ public class FriendBoard extends JFrame {
             public void keyReleased(KeyEvent e) {
                 String searchJSON = Util.createSingleJSON(3002, "search", txtSearch.getText());
                 clientOutput.println(searchJSON);
+                container.removeAll();
                 // 서버에게 검생 요청
 
                 if (clientInput.hasNextLine()) {
@@ -139,26 +140,26 @@ public class FriendBoard extends JFrame {
                             // 서버의 검색 결과 확인
 
                             if (searchResult.equals("true")) {
-                                container.removeAll();
+//                                container.removeAll();
 
                                 ArrayList<String> searchedUser = new ArrayList<String>(Arrays.asList(String.valueOf(object.get("searched")).split(",")));
                                 ArrayList<String> userMessage = new ArrayList<String>(Arrays.asList(String.valueOf(object.get("message")).split(",")));
                                 for (int i = 0; i < searchedUser.size(); i++) {
                                     JPanel con = new Container(searchedUser.get(i), socket).getContainer();
 
-                                    System.out.println(searchedUser.get(i));
-
                                     container.add(con);
+                                    System.out.println(searchedUser.get(i));
                                     // lbl 추가
                                 }
                             } // 유저를 찾은 경우
                             else {
                                 container.removeAll();
                             } // 유저를 찾지 못한 경우
+                            container.revalidate();
+                            container.repaint();
+
                             MainFrame.getTarget().removeAll();
                             MainFrame.getTarget().add(mainPanel);
-//                            MainFrame.getTarget().revalidate();
-//                            MainFrame.getTarget().repaint();
                             txtSearch.requestFocus();
                             // 메인 프레임에 새로고칭
                         } else {
