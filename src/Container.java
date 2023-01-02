@@ -1,21 +1,8 @@
-package Object;
-
-import Utilization.Util;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 public class Container {
     private JPanel panel;
@@ -30,12 +17,17 @@ public class Container {
 
         JLabel userName = new JLabel(user);
         //JLabel userMessage = new JLabel(message);
-        userName.addMouseListener(new MouseAdapter() {
+        panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                System.out.println("clicked");
+                if (e.getButton() == MouseEvent.BUTTON3) {
+                    System.out.println("Right clicked");
+                    PopUpMenu pm = new PopUpMenu(socket, panel, user);
+                    pm.ShowPopUpMenu(e);
+                }
             }
-        }); // 유저 정보 클릭 시
+        });
 
         panel.add(userName);
         //panel.add(userMessage);

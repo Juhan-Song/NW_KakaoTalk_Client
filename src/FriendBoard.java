@@ -1,6 +1,4 @@
-import ImageResizer.ImageResizer;
 import Object.ServerInfo;
-import Object.Container;
 import User.User;
 import Utilization.Util;
 import org.json.simple.JSONObject;
@@ -140,12 +138,21 @@ public class FriendBoard extends JFrame {
                             // 서버의 검색 결과 확인
 
                             if (searchResult.equals("true")) {
-//                                container.removeAll();
-
                                 ArrayList<String> searchedUser = new ArrayList<String>(Arrays.asList(String.valueOf(object.get("searched")).split(",")));
                                 ArrayList<String> userMessage = new ArrayList<String>(Arrays.asList(String.valueOf(object.get("message")).split(",")));
                                 for (int i = 0; i < searchedUser.size(); i++) {
                                     JPanel con = new Container(searchedUser.get(i), socket).getContainer();
+//                                    con.addMouseListener(new MouseAdapter() {
+//                                        @Override
+//                                        public void mouseClicked(MouseEvent e) {
+//                                            System.out.println("clicked");
+//                                            if (e.getButton() == MouseEvent.BUTTON3) {
+//                                                System.out.println("Right clicked");
+//                                                PopUpMenu pm = new PopUpMenu(con);
+//                                                pm.ShowPopUpMenu(e);
+//                                            }
+//                                        }
+//                                    });
 
                                     container.add(con);
                                     System.out.println(searchedUser.get(i));
