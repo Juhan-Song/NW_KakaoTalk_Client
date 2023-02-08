@@ -142,19 +142,8 @@ public class FriendBoard extends JFrame {
                                 ArrayList<String> userMessage = new ArrayList<String>(Arrays.asList(String.valueOf(object.get("message")).split(",")));
                                 for (int i = 0; i < searchedUser.size(); i++) {
                                     JPanel con = new Container(searchedUser.get(i), socket).getContainer();
-//                                    con.addMouseListener(new MouseAdapter() {
-//                                        @Override
-//                                        public void mouseClicked(MouseEvent e) {
-//                                            System.out.println("clicked");
-//                                            if (e.getButton() == MouseEvent.BUTTON3) {
-//                                                System.out.println("Right clicked");
-//                                                PopUpMenu pm = new PopUpMenu(con);
-//                                                pm.ShowPopUpMenu(e);
-//                                            }
-//                                        }
-//                                    });
-
                                     container.add(con);
+
                                     System.out.println(searchedUser.get(i));
                                     // lbl 추가
                                 }
